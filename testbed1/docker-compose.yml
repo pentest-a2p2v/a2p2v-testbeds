@@ -1,0 +1,65 @@
+version: "3.8"
+services:
+  attacker:
+    image: metasploitframework/metasploit-framework:latest
+    container_name: attacker
+    hostname: attacker
+    network_mode: host
+    command: ./msfrpcd -P welcome1 -S -U msf -f -p 55552
+  host1:
+    image: tleemcjr/metasploitable2:latest
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    container_name: host1
+    hostname: host1
+    networks:
+      testbed10:
+        ipv4_address: 172.10.0.101
+      testbed20:
+        ipv4_address: 172.20.0.101
+    command: sh -c "/bin/services.sh && sleep 3000"
+  host2:
+    image: a2p2v/ssh:latest
+    container_name: host2
+    hostname: host2
+    networks:
+      testbed10:
+        ipv4_address: 172.10.0.102
+      testbed20:
+        ipv4_address: 172.20.0.102
+  host3:
+    image: tleemcjr/metasploitable2:latest
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    container_name: host3
+    hostname: host3
+    networks:
+      testbed20:
+        ipv4_address: 172.20.0.103
+      testbed30:
+        ipv4_address: 172.30.0.103
+    command: sh -c "/bin/services.sh && sleep 3000"
+  host4:
+    image: a2p2v/ssh:latest
+    container_name: host4
+    hostname: host4
+    networks:
+      testbed20:
+        ipv4_address: 172.20.0.104
+      testbed30:
+        ipv4_address: 172.30.0.104
+  host5:
+    image: a2p2v/plc:latest
+    container_name: host5
+    hostname: host5
+    networks:
+      testbed30:
+        ipv4_address: 172.30.0.105
+
+networks:
+  testbed10:
+    external: true
+  testbed20:
+    external: true
+  testbed30:
+    external: true

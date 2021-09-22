@@ -1,0 +1,53 @@
+<network>
+    <hosts>
+        <host passive="True" id="sw-10" />
+        <host passive="True" id="sw-20" />
+        <host passive="True" id="sw-30" />
+        <host passive="False" id="attacker">
+            <interfaces>
+                <interface id="attacker-10" ip="172.10.0.200" mac=""/>
+            </interfaces>
+        </host>
+        <host passive="False" id="host1">
+            <interfaces>
+                <interface id="host1-10" ip="172.10.0.101" mac=""/>
+                <interface id="host1-20" ip="172.20.0.101" mac=""/>
+            </interfaces>
+        </host>
+        <host passive="False" id="host2">
+            <interfaces>
+                <interface id="host2-10" ip="172.10.0.102" mac=""/>
+                <interface id="host2-20" ip="172.20.0.102" mac=""/>
+            </interfaces>
+        </host>
+        <host passive="False" id="host3">
+            <interfaces>
+                <interface id="host3-20" ip="172.20.0.103" mac=""/>
+                <interface id="host3-30" ip="172.30.0.103" mac=""/>
+            </interfaces>
+        </host>
+        <host passive="False" id="host4">
+            <interfaces>
+                <interface id="host4-20" ip="172.20.0.104" mac=""/>
+                <interface id="host4-30" ip="172.30.0.104" mac=""/>
+            </interfaces>
+        </host>
+        <host passive="False" id="host5">
+            <interfaces>
+                <interface id="host5-30" ip="172.30.0.105" mac=""/>
+            </interfaces>
+        </host>
+    </hosts>
+    <connections>
+        <connection begin="attacker-10" end="sw-10" />
+        <connection begin="host1-10" end="sw-10" />
+        <connection begin="host1-20" end="sw-20" />
+        <connection begin="host2-10" end="sw-10" />
+        <connection begin="host2-20" end="sw-20" />
+        <connection begin="host3-20" end="sw-20" />
+        <connection begin="host3-30" end="sw-30" />
+        <connection begin="host4-20" end="sw-20" />
+        <connection begin="host4-30" end="sw-30" />
+        <connection begin="host5-30" end="sw-30" />
+    </connections>
+</network>

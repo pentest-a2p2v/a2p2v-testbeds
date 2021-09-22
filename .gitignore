@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# A2P2V generated directories
+a2p2v.log
+reports/
