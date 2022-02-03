@@ -131,3 +131,4 @@ dmypy.json
 # A2P2V generated directories
 a2p2v.log
 reports/
+.idea

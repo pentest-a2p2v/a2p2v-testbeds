@@ -9,5 +9,5 @@ a2p2v --plan \
     --goal-name change_temp \
     --goal-current-status change_temp \
     --lhost 172.17.0.1 \
-    --sleep 0.2 \
+    --sleep 0.7 \
     --execute
