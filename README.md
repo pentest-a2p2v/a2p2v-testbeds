@@ -12,10 +12,11 @@ Testbed1
 - host3: metasploitable2
 - host4: sshd
 - host5: plc emulator
+- flaskhmi: HMI web application
 
 ## Setup
 
-To build the sshd and plc_emulator testbed1 images:
+To build the sshd, plc_emulator, and flaskhmi testbed1 images:
 
     cd docker/
     ./build.sh
@@ -69,46 +70,24 @@ then choose the attack path "HOST2(1)>HOST4(1)>HOST5(1)"
 NOTE: Currently we are experiencing issues pivoting between the metasploitable2 machines,
 and thus you will encounter issues when using an attack path that includes host1 or host3.
 
+### Flask HMI
+
+Open the flask HMI by navigating to http://localhost:8800
+
+Ensure that the IP address says "host5" and click connect.
+
+The current temperature and temperature setting are displayed.
+
+To change the temperature:
+
+- The "+" raises the temperature by 1C
+- The "-" lowers the temperature by 1C
+
 ## Testcases
 
 Test cases:
 
 1. [x] current_host=HOST2, ssh_login
-2. [ ] current_host=HOST1, exploit/unix/ftp/vsftpd_234_backdoor
+2. [x] current_host=HOST1, exploit/unix/ftp/vsftpd_234_backdoor
 
-## Test case 2 error:
-
-An error occurs when attempting to upgrade from a shell to meterpreter session:
-
-```
-[*] Command shell session 5 opened (0.0.0.0:0 -> 172.10.0.101:6200) at 2021-10-05 12:50:37 +0000
-
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > sessions -u 5
-Usage: sessions <id>
-
-Interact with a different session Id.
-This command only accepts one positive numeric argument.
-This works the same as calling this from the MSF shell: sessions -i <session id>
-```
-
-The relevant function calls in *a2p2v/organizer.py*:
-
-```
-    def _parse_read_results(self, results):
-...
-        if re.search(r"Command shell session \d+ opened", data):
-            logger.debug("***Found Command shell session opened!***")
-            return self._command_shell_opened(data)
-...
-    def _command_shell_opened(self, data):
-        if not self._do_upgrade():
-...
-    def _do_upgrade(self):
-        return self._send_command('sessions -u $session')
-```
-
-Next steps:
-
-- Try to run manually using msfconsole (I think this works)
-- Try modifying organizer to use "run -j" (I think this causes problems with both test cases)
 

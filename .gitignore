@@ -132,3 +132,6 @@ dmypy.json
 a2p2v.log
 reports/
 .idea
+
+# Swap files
+*.swp

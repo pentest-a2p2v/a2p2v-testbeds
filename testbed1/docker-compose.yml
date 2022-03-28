@@ -55,6 +55,17 @@ services:
     networks:
       testbed30:
         ipv4_address: 172.30.0.105
+  flaskhmi:
+    image: a2p2v/flaskhmi:latest
+    container_name: flaskhmi
+    hostname: flaskhmi
+    networks:
+      testbed30:
+        ipv4_address: 172.30.0.123
+    ports:
+      - "0.0.0.0:8800:8800"
+    depends_on:
+      - host5
 
 networks:
   testbed10:

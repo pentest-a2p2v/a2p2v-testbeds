@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <script>
+        // Update the HTML fields
+        const updateTemperature = async (response) => {
+            const json_response = await response.json(); //extract JSON from the http response
+            console.log(json_response);
+            var temperature = document.getElementById("temperature");
+            var setting = document.getElementById("setting");
+            temperature.innerHTML = "Temperature: " + json_response.temp;
+            setting.innerHTML = "Setting: " + json_response.setting;
+        }
+
+        // API to retrieve the temperature
+        const getTemperature = async () => {
+            // temperature -> http://localhost:8080/temperature
+            const response = await fetch('temperature');
+            updateTemperature(response);
+        }
+
+        // API to raise the temperature
+        const raiseTemp = async () => {
+            const response = await fetch('raise');
+            updateTemperature(response);
+        }
+
+        // API to lower the temperature
+        const lowerTemp = async () => {
+            const response = await fetch('lower');
+            updateTemperature(response);
+        }
+
+        // Call the temperature function at page load
+        getTemperature();
+
+        // Update the temperature every 5 seconds
+        const interval = setInterval(function() {
+            getTemperature();
+        }, 5000);
+    </script>
+    <body>
+	<form action="/set_client" method="POST">
+	  <div>
+        <label>PLC IP: <input type="text" name="client_ip" value="host5"></label>
+	    <input type="submit" value="Submit">
+	  </div>
+	</form>
+        <div id="temperature"></div>
+        <div id="setting"></div>
+        <button id="lower" onclick="lowerTemp()">-</button>
+        <button id="raise" onclick="raiseTemp()">+</button>
+    </body>
+</html>
