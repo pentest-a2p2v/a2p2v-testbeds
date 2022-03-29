@@ -5,6 +5,8 @@ services:
     container_name: a2p2v
     hostname: a2p2v
     network_mode: host
+    volumes:
+      - "./config:/home/python/config"
   msfrpc:
     image: metasploitframework/metasploit-framework:latest
     container_name: msfrpc

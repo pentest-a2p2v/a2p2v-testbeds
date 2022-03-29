@@ -1,9 +1,10 @@
 #!/bin/sh
 
-VULN_FILE=config/testbed1.common
-NET_FILE=config/testbed1_network.xml
+VULN_FILE=/home/python/config/testbed1.common
+NET_FILE=/home/python/config/testbed1_network.xml
+DOCKER_EXEC="docker exec -it a2p2v"
 
-a2p2v --plan \
+$DOCKER_EXEC a2p2v --plan \
     -f ${VULN_FILE} \
     -nx ${NET_FILE} \
     --goal-name change_temp \
