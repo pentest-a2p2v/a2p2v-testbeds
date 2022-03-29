@@ -1,9 +1,14 @@
 version: "3.8"
 services:
-  attacker:
+  a2p2v:
+    image: a2p2v/a2p2v:latest
+    container_name: a2p2v
+    hostname: a2p2v
+    network_mode: host
+  msfrpc:
     image: metasploitframework/metasploit-framework:latest
-    container_name: attacker
-    hostname: attacker
+    container_name: msfrpc
+    hostname: msfrpc
     network_mode: host
     command: ./msfrpcd -P welcome1 -S -U msf -f -p 55552
   host1:

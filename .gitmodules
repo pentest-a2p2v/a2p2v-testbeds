@@ -1,0 +1,6 @@
+[submodule "pentest-a2p2v-core"]
+	path = pentest-a2p2v-core
+	url = https://github.com/pentest-a2p2v/pentest-a2p2v-core
+[submodule "pentest-a2p2v-gui"]
+	path = pentest-a2p2v-gui
+	url = https://github.com/pentest-a2p2v/pentest-a2p2v-gui

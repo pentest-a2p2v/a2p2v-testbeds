@@ -1,0 +1,16 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 3000
+  },
+  "file": {
+    "upload": "./tmp/upload",
+    "tool_output": "../pentest-a2p2v-core/reports",
+    "download": "./tmp/download"
+  },
+  "tool": {
+    "program_dir": "../pentest-a2p2v-core",
+    "program_name": "python3 -m a2p2v",
+    "lhost": "172.17.0.1"
+  }
+}

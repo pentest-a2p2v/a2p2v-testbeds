@@ -1,0 +1,347 @@
+{
+    "exploit/multi/elasticsearch/script_mvel_rce": {
+        "type": "exploit",
+        "name": "ElasticSearch Dynamic Script Arbitrary Java Execution",
+        "fullname": "exploit/multi/elasticsearch/script_mvel_rce",
+        "rank": "excellent",
+        "description": "This module exploits a remote command execution (RCE) vulnerability in ElasticSearch, exploitable by default on ElasticSearch prior to 1.2.0. The bug is found in the REST API, which does not require authentication, where the search function allows dynamic scripts execution. It can be used for remote attackers to execute arbitrary Java code. This module has been tested successfully on ElasticSearch 1.1.1 on Ubuntu Server 12.04 and Windows XP SP3.",
+        "arch": [
+            "java"
+        ],
+        "targets": {
+            "0": "ElasticSearch 1.1.1 / Automatic"
+        },
+        "cves": [
+            "2014-3120"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 9200,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit",
+            "TARGETURI": "/"
+        }
+    },
+    "exploit/multi/http/axis2_deployer": {
+        "type": "exploit",
+        "name": "Axis2 / SAP BusinessObjects Authenticated Code Execution (via SOAP)",
+        "fullname": "exploit/multi/http/axis2_deployer",
+        "rank": "excellent",
+        "description": "This module logs in to an Axis2 Web Admin Module instance using a specific user/pass and uploads and executes commands via deploying a malicious web service by using SOAP.",
+        "arch": [],
+        "targets": {
+            "0": "Java",
+            "1": "Windows Universal",
+            "2": "Linux X86"
+        },
+        "cves": [
+            "2010-0219"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 8080,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit"
+        }
+    },
+    "exploit/multi/http/struts_dmi_rest_exec": {
+        "type": "exploit",
+        "name": "Apache Struts REST Plugin With Dynamic Method Invocation Remote Code Execution",
+        "fullname": "exploit/multi/http/struts_dmi_rest_exec",
+        "rank": "excellent",
+        "description": "This module exploits a remote command execution vulnerability in Apache Struts version between 2.3.20 and 2.3.28 (except 2.3.20.2 and 2.3.24.2). Remote Code Execution can be performed when using REST Plugin with ! operator when Dynamic Method Invocation is enabled.",
+        "arch": [],
+        "targets": {
+            "0": "Windows Universal",
+            "1": "Linux Universal",
+            "2": "Java Universal"
+        },
+        "cves": [
+            "2016-3087"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 8080,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit",
+            "TARGETURI": "/"
+        }
+    },
+    "exploit/multi/http/tomcat_mgr_upload": {
+        "type": "exploit",
+        "name": "Apache Tomcat Manager Authenticated Upload Code Execution",
+        "fullname": "exploit/multi/http/tomcat_mgr_upload",
+        "rank": "excellent",
+        "description": "This module can be used to execute a payload on Apache Tomcat servers that have an exposed \"manager\" application. The payload is uploaded as a WAR archive containing a jsp application using a POST request against the /manager/html/upload component. NOTE: The compatible payload sets vary based on the selected target. For example, you must select the Windows target to use native Windows payloads.",
+        "arch": [],
+        "targets": {
+            "0": "Java Universal",
+            "1": "Windows Universal",
+            "2": "Linux x86"
+        },
+        "cves": [
+            "2009-3843",
+            "2009-4189",
+            "2009-4188",
+            "2010-0557",
+            "2010-4094",
+            "2009-3548"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 8282,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit",
+            "TARGETURI": "/"
+        }
+    },
+    "exploit/multi/http/wp_ninja_forms_unauthenticated_file_upload": {
+        "type": "exploit",
+        "name": "WordPress Ninja Forms Unauthenticated File Upload",
+        "fullname": "exploit/multi/http/wp_ninja_forms_unauthenticated_file_upload",
+        "rank": "excellent",
+        "description": "Versions 2.9.36 to 2.9.42 of the Ninja Forms plugin contain an unauthenticated file upload vulnerability, allowing guests to upload arbitrary PHP code that can be executed in the context of the web server.",
+        "arch": [
+            "php"
+        ],
+        "targets": {
+            "0": "ninja-forms"
+        },
+        "cves": [
+            "2016-1209"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 80,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit",
+            "TARGETURI": "/wordpress/",
+            "FORM_PATH": "/index.php/king-of-hearts/"
+        }
+    },
+    "exploit/multi/misc/java_jmx_server": {
+        "type": "exploit",
+        "name": "Java JMX Server Insecure Configuration Java Code Execution",
+        "fullname": "exploit/multi/misc/java_jmx_server",
+        "rank": "excellent",
+        "description": "This module takes advantage a Java JMX interface insecure configuration, which would allow loading classes from any remote (HTTP) URL. JMX interfaces with authentication disabled (com.sun.management.jmxremote.authenticate=false) should be vulnerable, while interfaces with authentication enabled will be vulnerable only if a weak configuration is deployed (allowing to use javax.management.loading.MLet, having a security manager allowing to load a ClassLoader MBean, etc.).",
+        "arch": [
+            "java"
+        ],
+        "targets": {
+            "0": "Generic (Java Payload)"
+        },
+        "cves": [
+            "2015-2342"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": ""
+        }
+    },
+    "exploit/multi/misc/weblogic_deserialize_asyncresponseservice": {
+        "type": "exploit",
+        "name": "Oracle Weblogic Server Deserialization RCE - AsyncResponseService ",
+        "fullname": "exploit/multi/misc/weblogic_deserialize_asyncresponseservice",
+        "rank": "excellent",
+        "description": "An unauthenticated attacker with network access to the Oracle Weblogic Server T3 interface can send a malicious SOAP request to the interface WLS AsyncResponseService to execute code on the vulnerable host.",
+        "arch": [],
+        "targets": {
+            "0": "Unix",
+            "1": "Windows",
+            "2": "Solaris"
+        },
+        "cves": [
+            "2017-10271"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 7001,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit",
+            "TARGETURI": "/"
+        }
+    },
+    "exploit/unix/ftp/vsftpd_234_backdoor": {
+        "type": "exploit",
+        "name": "VSFTPD v2.3.4 Backdoor Command Execution",
+        "fullname": "exploit/unix/ftp/vsftpd_234_backdoor",
+        "rank": "excellent",
+        "description": "This module exploits a malicious backdoor that was added to the VSFTPD download archive. This backdoor was introduced into the vsftpd-2.3.4.tar.gz archive between June 30th 2011 and July 1st 2011 according to the most recent information available. This backdoor was removed on July 3rd 2011.",
+        "arch": [
+            "cmd"
+        ],
+        "targets": {
+            "0": "Automatic"
+        },
+        "cves": [],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 21
+        }
+    },
+    "exploit/unix/irc/unreal_ircd_3281_backdoor": {
+        "type": "exploit",
+        "name": "UnrealIRCD 3.2.8.1 Backdoor Command Execution",
+        "fullname": "exploit/unix/irc/unreal_ircd_3281_backdoor",
+        "rank": "excellent",
+        "description": "This module exploits a malicious backdoor that was added to the Unreal IRCD 3.2.8.1 download archive. This backdoor was present in the Unreal3.2.8.1.tar.gz archive between November 2009 and June 12th 2010.",
+        "arch": [
+            "cmd"
+        ],
+        "targets": {
+            "0": "Automatic Target"
+        },
+        "cves": [
+            "2010-2075"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 6667
+        }
+    },
+    "exploit/unix/misc/distcc_exec": {
+        "type": "exploit",
+        "name": "DistCC Daemon Command Execution",
+        "fullname": "exploit/unix/misc/distcc_exec",
+        "rank": "excellent",
+        "description": "This module uses a documented security weakness to execute arbitrary commands on any system running distccd.",
+        "arch": [
+            "cmd"
+        ],
+        "targets": {
+            "0": "Automatic Target"
+        },
+        "cves": [
+            "2004-2687"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 3632
+        }
+    },
+    "exploit/windows/iis/iis_webdav_scstoragepathfromurl": {
+        "type": "exploit",
+        "name": "Microsoft IIS WebDav ScStoragePathFromUrl Overflow",
+        "fullname": "exploit/windows/iis/iis_webdav_scstoragepathfromurl",
+        "rank": "manual",
+        "description": "Buffer overflow in the ScStoragePathFromUrl function in the WebDAV service in Internet Information Services (IIS) 6.0 in Microsoft Windows Server 2003 R2 allows remote attackers to execute arbitrary code via a long header beginning with \"If: <http://\" in a PROPFIND request, as exploited in the wild in July or August 2016. Original exploit by Zhiniang Peng and Chen Wu.",
+        "arch": [],
+        "targets": {
+            "0": "Microsoft Windows Server 2003 R2 SP2 x86"
+        },
+        "cves": [
+            "2017-7269"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 80,
+            "HttpUsername": "sploit",
+            "HttpPassword": "sploit",
+            "TARGETURI": "/"
+        }
+    },
+    "exploit/windows/rdp/cve_2019_0708_bluekeep_rce": {
+        "type": "exploit",
+        "name": "CVE-2019-0708 BlueKeep RDP Remote Windows Kernel Use After Free",
+        "fullname": "exploit/windows/rdp/cve_2019_0708_bluekeep_rce",
+        "rank": "manual",
+        "description": "The RDP termdd.sys driver improperly handles binds to internal-only channel MS_T120, allowing a malformed Disconnect Provider Indication message to cause use-after-free. With a controllable data/size remote nonpaged pool spray, an indirect call gadget of the freed channel is used to achieve arbitrary code execution. Windows 7 SP1 and Windows Server 2008 R2 are the only currently supported targets. Windows 7 SP1 should be exploitable in its default configuration, assuming your target selection is correctly matched to the system's memory layout. HKLM\\SYSTEM\\CurrentControlSet\\Control\\TerminalServer\\Winstations\\RDP-Tcp\\fDisableCam *needs* to be set to 0 for exploitation to succeed against Windows Server 2008 R2. This is a non-standard configuration for normal servers, and the target will crash if the aforementioned Registry key is not set! If the target is crashing regardless, you will likely need to determine the non-paged pool base in kernel memory and set it as the GROOMBASE option.",
+        "arch": [],
+        "targets": {
+            "0": "Automatic targeting via fingerprinting",
+            "1": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64)",
+            "2": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - Virtualbox 6)",
+            "3": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - VMWare 14)",
+            "4": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - VMWare 15)",
+            "5": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - VMWare 15.1)",
+            "6": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - Hyper-V)",
+            "7": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - AWS)",
+            "8": "Windows 7 SP1 / 2008 R2 (6.1.7601 x64 - QEMU/KVM)"
+        },
+        "cves": [
+            "2019-0708"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 3389
+        }
+    },
+    "exploit/windows/smb/ms17_010_eternalblue": {
+        "type": "exploit",
+        "name": "MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption",
+        "fullname": "exploit/windows/smb/ms17_010_eternalblue",
+        "rank": "average",
+        "description": "This module is a port of the Equation Group ETERNALBLUE exploit, part of the FuzzBunch toolkit released by Shadow Brokers. There is a buffer overflow memmove operation in Srv!SrvOs2FeaToNt. The size is calculated in Srv!SrvOs2FeaListSizeToNt, with mathematical error where a DWORD is subtracted into a WORD. The kernel pool is groomed so that overflow is well laid-out to overwrite an SMBv1 buffer. Actual RIP hijack is later completed in srvnet!SrvNetWskReceiveComplete. This exploit, like the original may not trigger 100% of the time, and should be run continuously until triggered. It seems like the pool will get hot streaks and need a cool down period before the shells rain in again. The module will attempt to use Anonymous login, by default, to authenticate to perform the exploit. If the user supplies credentials in the SMBUser, SMBPass, and SMBDomain options it will use those instead. On some systems, this module may cause system instability and crashes, such as a BSOD or a reboot. This may be more likely with some payloads.",
+        "arch": [
+            "x64"
+        ],
+        "targets": {
+            "0": "Automatic Target",
+            "1": "Windows 7",
+            "2": "Windows Embedded Standard 7",
+            "3": "Windows Server 2008 R2",
+            "4": "Windows 8",
+            "5": "Windows 8.1",
+            "6": "Windows Server 2012",
+            "7": "Windows 10 Pro",
+            "8": "Windows 10 Enterprise Evaluation"
+        },
+        "cves": [
+            "2017-0143",
+            "2017-0144",
+            "2017-0145",
+            "2017-0146",
+            "2017-0147",
+            "2017-0148"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 445
+        }
+    },
+    "exploit/windows/smb/ms17_010_psexec": {
+        "type": "exploit",
+        "name": "MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution",
+        "fullname": "exploit/windows/smb/ms17_010_psexec",
+        "rank": "normal",
+        "description": "This module will exploit SMB with vulnerabilities in MS17-010 to achieve a write-what-where primitive. This will then be used to overwrite the connection session information with as an Administrator session. From there, the normal psexec payload code execution is done. Exploits a type confusion between Transaction and WriteAndX requests and a race condition in Transaction requests, as seen in the EternalRomance, EternalChampion, and EternalSynergy exploits. This exploit chain is more reliable than the EternalBlue exploit, but requires a named pipe.",
+        "arch": [
+            "x86",
+            "x64"
+        ],
+        "targets": {
+            "0": "Automatic",
+            "1": "PowerShell",
+            "2": "Native upload",
+            "3": "MOF upload"
+        },
+        "cves": [
+            "2017-0143",
+            "2017-0146",
+            "2017-0147"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 445
+        }
+    },
+    "exploit/windows/smb/ms10_061_spoolss": {
+        "type": "exploit",
+        "name": "MS10-061 Microsoft Print Spooler Service Impersonation Vulnerability",
+        "fullname": "exploit/windows/smb/ms10_061_spoolss",
+        "rank": "excellent",
+        "description": "This module exploits the RPC service impersonation vulnerability detailed in Microsoft Bulletin MS10-061. By making a specific DCE RPC request to the StartDocPrinter procedure, an attacker can impersonate the Printer Spooler service to create a file. The working directory at the time is %SystemRoot%\\system32. An attacker can specify any file name, including directory traversal or full paths. By sending WritePrinter requests, an attacker can fully control the content of the created file. In order to gain code execution, this module writes to a directory used by Windows Management Instrumentation (WMI) to deploy applications. This directory (Wbem\\Mof) is periodically scanned and any new .mof files are processed automatically. This is the same technique employed by the Stuxnet code found in the wild.",
+        "arch": [],
+        "targets": {
+            "0": "Windows Universal"
+        },
+        "cves": [
+            "2010-2729"
+        ],
+        "options": {
+            "RHOSTS": "",
+            "RPORT": 445
+        }
+    }
+}

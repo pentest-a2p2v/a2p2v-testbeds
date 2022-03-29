@@ -16,9 +16,8 @@ Testbed1
 
 ## Setup
 
-To build the sshd, plc_emulator, and flaskhmi testbed1 images:
+To build the sshd, plc_emulator, flaskhmi, and a2p2v testbed1 images:
 
-    cd docker/
     ./build.sh
 
 To create the testbed1 network:
