@@ -1,7 +1,7 @@
 # A2P2V Sample Testbeds
 
 This repository contains sample testbeds to use with a2p2v.
-The testbeds are built and run using testbed1 and testbed1-compose. 
+The testbeds are built and run using docker and docker-compose. 
 
 ## Testbed details
 
@@ -12,9 +12,20 @@ Testbed1
 - host3: metasploitable2
 - host4: sshd
 - host5: plc emulator
+- a2p2v: a2p2v and gui
+- msfrpc: Metasploit RPC server
 - flaskhmi: HMI web application
 
 ## Setup
+
+Clone this repository using submodules:
+
+    git clone --recurse-submodules
+
+If you forgot to include the "--recurse-submodules" flag, you can run the following commands:
+
+    git submodule init
+    git submodule update --remote
 
 To build the sshd, plc_emulator, flaskhmi, and a2p2v testbed1 images:
 
@@ -37,16 +48,6 @@ For example, to start testbed1:
 
 ## Testbed1 examples
 
-Add the following to the $HOME/.config/a2p2v/a2p2v.conf file:
-
-    [INITIAL CONDITIONS]
-    initial_condition1 = {"host":"attacker", "type":"state", "key":"initial_host", "value":"attacker"}
-    initial_condition2 = {"host":"attacker", "type":"state", "key":"current_role", "value":"admin"}
-    initial_condition3 = {"host":"attacker", "type":"state", "key":"current_access", "value":"metasploit"}
-    initial_condition4 = {"host":"gw", "type":"credential", "username":"username", "password":"password", "role":"user"}
-    initial_condition5 = {"host":"host2", "type":"credential", "username":"test", "password":"test", "role":"user"}
-    initial_condition6 = {"host":"host4", "type":"credential", "username":"test", "password":"test", "role":"user"}
-    
 Obtain a shell on host2:
 
     cd testbed1/
@@ -66,9 +67,6 @@ Change the temperature on the PLC:
 
 then choose the attack path "HOST2(1)>HOST4(1)>HOST5(1)"
 
-NOTE: Currently we are experiencing issues pivoting between the metasploitable2 machines,
-and thus you will encounter issues when using an attack path that includes host1 or host3.
-
 ### Flask HMI
 
 Open the flask HMI by navigating to http://localhost:8800
@@ -81,12 +79,3 @@ To change the temperature:
 
 - The "+" raises the temperature by 1C
 - The "-" lowers the temperature by 1C
-
-## Testcases
-
-Test cases:
-
-1. [x] current_host=HOST2, ssh_login
-2. [x] current_host=HOST1, exploit/unix/ftp/vsftpd_234_backdoor
-
-
