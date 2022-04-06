@@ -24,7 +24,7 @@ services:
         ipv4_address: 172.10.0.101
       testbed20:
         ipv4_address: 172.20.0.101
-    command: sh -c "/bin/services.sh && sleep 3000"
+    command: sh -c "/bin/services.sh && sleep infinity"
   host2:
     image: a2p2v/ssh:latest
     container_name: host2
@@ -45,7 +45,7 @@ services:
         ipv4_address: 172.20.0.103
       testbed30:
         ipv4_address: 172.30.0.103
-    command: sh -c "/bin/services.sh && sleep 3000"
+    command: sh -c "/bin/services.sh && sleep infinity"
   host4:
     image: a2p2v/ssh:latest
     container_name: host4
