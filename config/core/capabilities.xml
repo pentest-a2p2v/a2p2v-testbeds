@@ -99,7 +99,7 @@
       <condition host="$target_host" type="capability" key="capability_id" value="modbus.write_register" />
     </preconditions>
     <actions>
-      <action type="capability" key="parameters" value="data_address=2 data_registers=30 unit_number=255" />
+      <action type="capability" key="parameters" value="data_address=2 data_registers=99 unit_number=255" />
     </actions>
   </capability>
 </capabilities>
