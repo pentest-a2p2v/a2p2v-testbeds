@@ -1,7 +1,7 @@
 #!/bin/sh
 
-VULN_FILE=/home/python/config/testbed1.common
-NET_FILE=/home/python/config/testbed1_network.xml
+VULN_FILE=/home/python/config/testbed/testbed1.common
+NET_FILE=/home/python/config/testbed/testbed1_network.xml
 DOCKER_EXEC="docker exec -it a2p2v"
 
 $DOCKER_EXEC a2p2v --plan \
