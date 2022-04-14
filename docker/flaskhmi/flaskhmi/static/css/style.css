@@ -23,3 +23,11 @@ input[type="text"]{
   display: inline-block;
   font-size: 16px;
 }
+
+img {
+  border-radius: 20px;
+  padding: 5px;
+  width: 357px;
+  height: 456px;
+  float: right;
+}
