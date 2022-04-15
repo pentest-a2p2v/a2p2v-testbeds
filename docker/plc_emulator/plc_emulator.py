@@ -50,31 +50,26 @@ REG_SETTING = 2
 REG_CONTROL = 3
 
 
-def updating_writer(a):
-    """A worker process that runs every so often and
-    updates live values of the context. It should be noted
-    that there is a race condition for the update.
-
-    :param arguments: The input arguments to the call
+def update_setting(a):
+    """Update the temperature setting
+    If the Control register is set to 0, lower the temperature.
+    If the Control register is set to 1, raise the temperature.
+    In both cases, reset the control register to 100.
     """
     context = a[0]
     register = 3
     slave_id = 0x00
-    # address = 0  # 0x10
-    # tag_value = context[slave_id].getValues(register, REG_TAG, count=1)[0]
-    temp_value = context[slave_id].getValues(register, REG_TEMP, count=1)[0]
+
+    # Get the current setting value
     setting_value = context[slave_id].getValues(
         register, REG_SETTING, count=1
     )[0]
+    # Get the current control value
     control_value = context[slave_id].getValues(
         register, REG_CONTROL, count=1
     )[0]
 
-    # log.debug("tag_value: %d", tag_value)
-    log.debug("temp_value: %d", temp_value)
-    log.debug("setting_value: %d", setting_value)
-    # log.debug("control_value: %d", control_value)
-
+    # Update the setting based on the control value
     if control_value == 0:
         setting_value -= 1
         control_value = 100
@@ -82,19 +77,37 @@ def updating_writer(a):
         setting_value += 1
         control_value = 100
 
+    # Store the new setting and control values
+    context[slave_id].setValues(register, REG_SETTING, [setting_value])
+    context[slave_id].setValues(register, REG_CONTROL, [control_value])
+
+
+def update_temperature(a):
+    """Simulate a thermostat by raising/lowering the room temperature
+    If the current temp is less than the setting, raise the temp.
+    If the current temp is greater than the setting, lower the temp.
+    """
+    context = a[0]
+    register = 3
+    slave_id = 0x00
+    # Get the current temperature value
+    temp_value = context[slave_id].getValues(register, REG_TEMP, count=1)[0]
+    # Get the current setting value
+    setting_value = context[slave_id].getValues(
+        register, REG_SETTING, count=1
+    )[0]
+
+    log.debug("temp_value: %d", temp_value)
+    log.debug("setting_value: %d", setting_value)
+
+    # Adjust the temperature by one degree each interval
     if temp_value < setting_value:
         temp_value += 1
     elif temp_value > setting_value:
         temp_value -= 1
 
+    # Store the new temperature value
     context[slave_id].setValues(register, REG_TEMP, [temp_value])
-    context[slave_id].setValues(register, REG_SETTING, [setting_value])
-    context[slave_id].setValues(register, REG_CONTROL, [control_value])
-
-    # values = context[slave_id].getValues(register, address, count=5)
-    # values = [v + 1 for v in values]
-    # log.debug("new values: " + str(values))
-    # context[slave_id].setValues(register, address, values)
 
 
 def run_updating_server():
@@ -105,7 +118,6 @@ def run_updating_server():
     store = ModbusSlaveContext(
         di=ModbusSequentialDataBlock(0, [10] * 100),
         co=ModbusSequentialDataBlock(0, [11] * 100),
-        # hr=ModbusSequentialDataBlock(0, list(range(0,100))),
         hr=ModbusSequentialDataBlock(
             0, [-1, 20, 20, 20, 100] + list(range(5, 100))
         ),
@@ -127,9 +139,19 @@ def run_updating_server():
     # ----------------------------------------------------------------------- #
     # run the server you want
     # ----------------------------------------------------------------------- #
-    time = 5  # 5 seconds delay
-    loop = LoopingCall(f=updating_writer, a=(context,))
-    loop.start(time, now=False)  # initially delay by time
+    # Start the setting update thread
+    setting_update_interval_seconds = 0.2  # 0.2 seconds delay
+    setting_loop = LoopingCall(f=update_setting, a=(context,))
+    setting_loop.start(interval=setting_update_interval_seconds, now=False)
+
+    # Start the temperature update thread
+    temperature_update_interval_seconds = 5.0  # 2.0 seconds delay
+    temperature_loop = LoopingCall(f=update_temperature, a=(context,))
+    temperature_loop.start(
+        interval=temperature_update_interval_seconds, now=False
+    )
+
+    # Start the modbus server
     StartTcpServer(context, identity=identity, address=("", 502))
 
 
