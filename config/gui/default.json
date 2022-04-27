@@ -12,8 +12,5 @@
     "program_dir": "static",
     "program_name": "python3 -m a2p2v --sleep 0.2",
     "lhost": "172.17.0.1"
-  },
-  "report": {
-    "show": "true"
   }
 }
